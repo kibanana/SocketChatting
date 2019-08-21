@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.server_chatinfo_group = new System.Windows.Forms.GroupBox();
+            this.port_server_info = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.ip_server_info = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_server_exit = new System.Windows.Forms.Button();
             this.btn_server_open = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.server_info_group = new System.Windows.Forms.GroupBox();
+            this.btn_server_nickname = new System.Windows.Forms.Button();
+            this.server_nickname = new System.Windows.Forms.TextBox();
             this.btn_message = new System.Windows.Forms.Button();
             this.Server_Textarea = new System.Windows.Forms.RichTextBox();
             this.message = new System.Windows.Forms.TextBox();
-            this.server_nickname = new System.Windows.Forms.TextBox();
-            this.port_server_info = new System.Windows.Forms.TextBox();
-            this.ip_server_info = new System.Windows.Forms.TextBox();
-            this.btn_server_nickname = new System.Windows.Forms.Button();
             this.server_chatinfo_group.SuspendLayout();
             this.server_info_group.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,17 @@
             this.server_chatinfo_group.TabIndex = 6;
             this.server_chatinfo_group.TabStop = false;
             this.server_chatinfo_group.Text = "채팅방 정보";
+            this.server_chatinfo_group.Enter += new System.EventHandler(this.Server_chatinfo_group_Enter);
+            // 
+            // port_server_info
+            // 
+            this.port_server_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.port_server_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.port_server_info.Location = new System.Drawing.Point(92, 77);
+            this.port_server_info.Name = "port_server_info";
+            this.port_server_info.Size = new System.Drawing.Size(208, 25);
+            this.port_server_info.TabIndex = 17;
+            this.port_server_info.Text = "5000";
             // 
             // label2
             // 
@@ -72,6 +83,15 @@
             this.label2.Size = new System.Drawing.Size(42, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Port";
+            // 
+            // ip_server_info
+            // 
+            this.ip_server_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ip_server_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.ip_server_info.Location = new System.Drawing.Point(92, 35);
+            this.ip_server_info.Name = "ip_server_info";
+            this.ip_server_info.Size = new System.Drawing.Size(208, 25);
+            this.ip_server_info.TabIndex = 16;
             // 
             // label1
             // 
@@ -93,6 +113,7 @@
             this.btn_server_exit.TabIndex = 8;
             this.btn_server_exit.Text = "종료";
             this.btn_server_exit.UseVisualStyleBackColor = true;
+            this.btn_server_exit.Click += new System.EventHandler(this.Btn_server_exit_Click);
             // 
             // btn_server_open
             // 
@@ -103,6 +124,7 @@
             this.btn_server_open.TabIndex = 7;
             this.btn_server_open.Text = "열기";
             this.btn_server_open.UseVisualStyleBackColor = true;
+            this.btn_server_open.Click += new System.EventHandler(this.Btn_server_open_Click);
             // 
             // label3
             // 
@@ -129,65 +151,6 @@
             this.server_info_group.TabStop = false;
             this.server_info_group.Text = "Server 정보";
             // 
-            // btn_message
-            // 
-            this.btn_message.Font = new System.Drawing.Font("나눔바른고딕OTF", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_message.Location = new System.Drawing.Point(481, 332);
-            this.btn_message.Name = "btn_message";
-            this.btn_message.Size = new System.Drawing.Size(75, 28);
-            this.btn_message.TabIndex = 12;
-            this.btn_message.Text = "보내기";
-            this.btn_message.UseVisualStyleBackColor = true;
-            // 
-            // Server_Textarea
-            // 
-            this.Server_Textarea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Server_Textarea.Font = new System.Drawing.Font("나눔스퀘어", 10.15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Server_Textarea.Location = new System.Drawing.Point(28, 378);
-            this.Server_Textarea.Name = "Server_Textarea";
-            this.Server_Textarea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.Server_Textarea.Size = new System.Drawing.Size(531, 202);
-            this.Server_Textarea.TabIndex = 11;
-            this.Server_Textarea.Text = "[-- \'10.96.124.130\'님이 \'김철수철수\' (으)로 이름을 변경하셨습니다 --]";
-            // 
-            // message
-            // 
-            this.message.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.message.Location = new System.Drawing.Point(28, 333);
-            this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(447, 27);
-            this.message.TabIndex = 13;
-            this.message.Text = "How are you doing?";
-            // 
-            // server_nickname
-            // 
-            this.server_nickname.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.server_nickname.Location = new System.Drawing.Point(148, 36);
-            this.server_nickname.Name = "server_nickname";
-            this.server_nickname.Size = new System.Drawing.Size(286, 25);
-            this.server_nickname.TabIndex = 14;
-            this.server_nickname.Text = "김철수철수";
-            // 
-            // port_server_info
-            // 
-            this.port_server_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.port_server_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.port_server_info.Location = new System.Drawing.Point(92, 77);
-            this.port_server_info.Name = "port_server_info";
-            this.port_server_info.Size = new System.Drawing.Size(208, 25);
-            this.port_server_info.TabIndex = 17;
-            this.port_server_info.Text = "5000";
-            // 
-            // ip_server_info
-            // 
-            this.ip_server_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ip_server_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.ip_server_info.Location = new System.Drawing.Point(92, 35);
-            this.ip_server_info.Name = "ip_server_info";
-            this.ip_server_info.Size = new System.Drawing.Size(208, 25);
-            this.ip_server_info.TabIndex = 16;
-            this.ip_server_info.Text = "10.96.124.130";
-            // 
             // btn_server_nickname
             // 
             this.btn_server_nickname.Font = new System.Drawing.Font("나눔바른고딕OTF", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -198,6 +161,46 @@
             this.btn_server_nickname.TabIndex = 15;
             this.btn_server_nickname.Text = "변경";
             this.btn_server_nickname.UseVisualStyleBackColor = true;
+            this.btn_server_nickname.Click += new System.EventHandler(this.Btn_server_nickname_Click);
+            // 
+            // server_nickname
+            // 
+            this.server_nickname.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.server_nickname.Location = new System.Drawing.Point(148, 36);
+            this.server_nickname.Name = "server_nickname";
+            this.server_nickname.Size = new System.Drawing.Size(286, 25);
+            this.server_nickname.TabIndex = 14;
+            this.server_nickname.Text = "Server";
+            // 
+            // btn_message
+            // 
+            this.btn_message.Font = new System.Drawing.Font("나눔바른고딕OTF", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_message.Location = new System.Drawing.Point(481, 332);
+            this.btn_message.Name = "btn_message";
+            this.btn_message.Size = new System.Drawing.Size(75, 28);
+            this.btn_message.TabIndex = 12;
+            this.btn_message.Text = "보내기";
+            this.btn_message.UseVisualStyleBackColor = true;
+            this.btn_message.Click += new System.EventHandler(this.Btn_message_Click);
+            // 
+            // Server_Textarea
+            // 
+            this.Server_Textarea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Server_Textarea.Font = new System.Drawing.Font("나눔스퀘어", 10.15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Server_Textarea.Location = new System.Drawing.Point(28, 378);
+            this.Server_Textarea.Name = "Server_Textarea";
+            this.Server_Textarea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.Server_Textarea.Size = new System.Drawing.Size(531, 202);
+            this.Server_Textarea.TabIndex = 11;
+            this.Server_Textarea.Text = "";
+            // 
+            // message
+            // 
+            this.message.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.message.Location = new System.Drawing.Point(28, 333);
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(447, 27);
+            this.message.TabIndex = 13;
             // 
             // Form_Server
             // 
@@ -215,6 +218,7 @@
             this.Name = "Form_Server";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Server - Chatting room";
+            this.Load += new System.EventHandler(this.Form_Server_Load);
             this.server_chatinfo_group.ResumeLayout(false);
             this.server_chatinfo_group.PerformLayout();
             this.server_info_group.ResumeLayout(false);

@@ -30,12 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_exit = new System.Windows.Forms.Button();
-            this.btn_server = new System.Windows.Forms.Button();
-            this.btn_client = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_server = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btn_client = new System.Windows.Forms.Button();
+            this.btn_exit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(36, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(223, 23);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Server가 채팅방을 엽니다";
+            // 
+            // btn_server
+            // 
+            this.btn_server.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_server.Location = new System.Drawing.Point(34, 73);
+            this.btn_server.Name = "btn_server";
+            this.btn_server.Size = new System.Drawing.Size(225, 41);
+            this.btn_server.TabIndex = 0;
+            this.btn_server.Text = "채팅방 열기";
+            this.btn_server.UseVisualStyleBackColor = true;
+            this.btn_server.Click += new System.EventHandler(this.Btn_server_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label3);
@@ -75,25 +96,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Client";
             // 
-            // btn_exit
+            // label3
             // 
-            this.btn_exit.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_exit.Location = new System.Drawing.Point(73, 471);
-            this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(295, 49);
-            this.btn_exit.TabIndex = 3;
-            this.btn_exit.Text = "종료";
-            this.btn_exit.UseVisualStyleBackColor = true;
-            // 
-            // btn_server
-            // 
-            this.btn_server.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_server.Location = new System.Drawing.Point(34, 73);
-            this.btn_server.Name = "btn_server";
-            this.btn_server.Size = new System.Drawing.Size(225, 41);
-            this.btn_server.TabIndex = 0;
-            this.btn_server.Text = "채팅창 열기";
-            this.btn_server.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(22, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(251, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Client가 채팅방에 참여합니다";
             // 
             // btn_client
             // 
@@ -104,26 +115,18 @@
             this.btn_client.TabIndex = 1;
             this.btn_client.Text = "채팅방 참여";
             this.btn_client.UseVisualStyleBackColor = true;
+            this.btn_client.Click += new System.EventHandler(this.Btn_client_Click);
             // 
-            // label2
+            // btn_exit
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(36, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(223, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Server가 채팅방을 엽니다";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(22, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(251, 23);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Client가 채팅방에 참여합니다";
+            this.btn_exit.Font = new System.Drawing.Font("나눔바른고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_exit.Location = new System.Drawing.Point(73, 471);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(295, 49);
+            this.btn_exit.TabIndex = 3;
+            this.btn_exit.Text = "종료";
+            this.btn_exit.UseVisualStyleBackColor = true;
+            this.btn_exit.Click += new System.EventHandler(this.Btn_exit_Click);
             // 
             // Form1
             // 
