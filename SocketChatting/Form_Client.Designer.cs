@@ -38,12 +38,12 @@
             this.client_info_group = new System.Windows.Forms.GroupBox();
             this.btn_client_nickname = new System.Windows.Forms.Button();
             this.client_nickname = new System.Windows.Forms.TextBox();
-            this.ip_client_specific_info = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.Client_Textarea = new System.Windows.Forms.RichTextBox();
             this.btn_message = new System.Windows.Forms.Button();
             this.message = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ip_client_specific_info = new System.Windows.Forms.TextBox();
             this.client_chatinfo_group.SuspendLayout();
             this.client_info_group.SuspendLayout();
             this.SuspendLayout();
@@ -166,16 +166,6 @@
             this.client_nickname.Text = "Client";
             this.client_nickname.TextChanged += new System.EventHandler(this.Client_nickname_TextChanged);
             // 
-            // ip_client_specific_info
-            // 
-            this.ip_client_specific_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ip_client_specific_info.Location = new System.Drawing.Point(157, 32);
-            this.ip_client_specific_info.Name = "ip_client_specific_info";
-            this.ip_client_specific_info.ReadOnly = true;
-            this.ip_client_specific_info.Size = new System.Drawing.Size(328, 25);
-            this.ip_client_specific_info.TabIndex = 2;
-            this.ip_client_specific_info.Text = "10.96.124.130:51652";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -186,17 +176,6 @@
             this.label4.Size = new System.Drawing.Size(103, 19);
             this.label4.TabIndex = 1;
             this.label4.Text = "Client 닉네임";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label3.Location = new System.Drawing.Point(25, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 19);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Client IP";
             // 
             // Client_Textarea
             // 
@@ -227,6 +206,26 @@
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(447, 27);
             this.message.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label3.Location = new System.Drawing.Point(25, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 19);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Client IP";
+            // 
+            // ip_client_specific_info
+            // 
+            this.ip_client_specific_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ip_client_specific_info.Location = new System.Drawing.Point(157, 32);
+            this.ip_client_specific_info.Name = "ip_client_specific_info";
+            this.ip_client_specific_info.ReadOnly = true;
+            this.ip_client_specific_info.Size = new System.Drawing.Size(328, 25);
+            this.ip_client_specific_info.TabIndex = 2;
             // 
             // Form_Client
             // 
@@ -264,13 +263,13 @@
         private System.Windows.Forms.TextBox ip_client_info;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox client_nickname;
-        private System.Windows.Forms.TextBox ip_client_specific_info;
         private System.Windows.Forms.RichTextBox Client_Textarea;
         private System.Windows.Forms.Button btn_message;
         private System.Windows.Forms.TextBox message;
         private System.Windows.Forms.Button btn_client_nickname;
+        private System.Windows.Forms.TextBox ip_client_specific_info;
+        private System.Windows.Forms.Label label3;
     }
 }

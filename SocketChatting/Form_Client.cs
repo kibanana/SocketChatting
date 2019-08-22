@@ -74,9 +74,9 @@ namespace SocketChatting
                 MsgBoxHelper.Error("포트 번호가 잘못 입력되었거나 입력되지 않았습니다.");
                 port_client_info.Focus();
                 port_client_info.SelectAll();
-                ip_client_specific_info.Text = ip_client_info + ":" + port_client_info;
                 return;
             }
+            ip_client_specific_info.Text = ip_client_info.Text + ":" + port_client_info.Text;
 
             try { mainSock.Connect(ip_client_info.Text, port); }
             catch (Exception ex) {
@@ -114,8 +114,30 @@ namespace SocketChatting
 
         private void Btn_client_nickname_Click(object sender, EventArgs e)
         {
-            AppendText("[--'" + clientName + "'님이 '"+ client_nickname.Text + "'(으)로 이름을 변경하셨습니다--]");
-            clientName = client_nickname.Text;
+            string changeNicknameMessage = "[--'" + clientName +"("+ip_client_info.Text+")"+ "'님이 '" + client_nickname.Text.Trim() + "'(으)로 이름을 변경하셨습니다--]";
+
+            if (string.IsNullOrEmpty(client_nickname.Text.Trim()))
+            {
+                MsgBoxHelper.Warn("입력된 닉네임이 없습니다!");
+                client_nickname.Focus();
+                return;
+            }
+
+            // 서버가 대기중인지 확인한다.
+            if (!mainSock.IsBound)
+            {
+                MsgBoxHelper.Warn("서버가 실행되고 있지 않습니다!");
+                return;
+            }
+
+            // 문자열을 utf8 형식의 바이트로 변환한다.
+            byte[] bDts = Encoding.UTF8.GetBytes(clientName + '\x01' + changeNicknameMessage);
+
+            // 서버에 전송한다.
+            mainSock.Send(bDts);
+            
+            AppendText(string.Format(changeNicknameMessage));
+            clientName = client_nickname.Text.Trim();
         }
 
         void DataReceived(IAsyncResult ar)
@@ -136,17 +158,10 @@ namespace SocketChatting
             // 텍스트로 변환한다.
             string text = Encoding.UTF8.GetString(obj.Buffer);
 
-            // 0x01 기준으로 짜른다.
-            // tokens[0] - 보낸 사람 IP
-            // tokens[1] - 보낸 메세지
-            string[] tokens = text.Split('\x01');
-            string ip = tokens[0];
-            string msg = tokens[1];
-
             // 텍스트박스에 추가해준다.
             // 비동기식으로 작업하기 때문에 폼의 UI 스레드에서 작업을 해줘야 한다.
             // 따라서 대리자를 통해 처리한다.
-            AppendText(string.Format("[받음]{0}: {1}", ip, msg));
+            AppendText(string.Format("[받음]{0}", text));
 
             // 클라이언트에선 데이터를 전달해줄 필요가 없으므로 바로 수신 대기한다.
             // 데이터를 받은 후엔 다시 버퍼를 비워주고 같은 방법으로 수신을 대기한다.
@@ -179,13 +194,13 @@ namespace SocketChatting
             string addr = ip.Address.ToString();
 
             // 문자열을 utf8 형식의 바이트로 변환한다.
-            byte[] bDts = Encoding.UTF8.GetBytes(addr + '\x01' + m);
+            byte[] bDts = Encoding.UTF8.GetBytes(clientName+"("+ip_client_info.Text+")"+ '\x01' + m);
 
             // 서버에 전송한다.
             mainSock.Send(bDts);
 
             // 전송 완료 후 텍스트박스에 추가하고, 원래의 내용은 지운다.
-            AppendText(string.Format("[보냄]{0}: {1}", addr, m));
+            AppendText(string.Format("[보냄]"+clientName + "(" + ip_client_info.Text + ")" + '\x01' + m));
             message.Clear();
         }
 

@@ -131,17 +131,10 @@ namespace SocketChatting
             // 텍스트로 변환한다.
             string text = Encoding.UTF8.GetString(obj.Buffer);
 
-            // 0x01 기준으로 짜른다.
-            // tokens[0] - 보낸 사람 IP
-            // tokens[1] - 보낸 메세지
-            string[] tokens = text.Split('\x01');
-            string ip = tokens[0];
-            string msg = tokens[1];
-
             // 텍스트박스에 추가해준다.
             // 비동기식으로 작업하기 때문에 폼의 UI 스레드에서 작업을 해줘야 한다.
             // 따라서 대리자를 통해 처리한다.
-            AppendText(string.Format("Client {0}: {1}", ip, msg));
+            AppendText(string.Format("{0}", text));
 
             // for을 통해 "역순"으로 클라이언트에게 데이터를 보낸다.
             for (int i = connectedClients.Count - 1; i >= 0; i--)
@@ -188,8 +181,41 @@ namespace SocketChatting
 
         private void Btn_server_nickname_Click(object sender, EventArgs e)
         {
-            AppendText("Server 닉네임이 '"+serverName + "' -> '"+server_nickname.Text+"' 로 변경되었습니다");
-            serverName = server_nickname.Text;
+            string nickname = server_nickname.Text.Trim();
+            if (string.IsNullOrEmpty(nickname))
+            {
+                MsgBoxHelper.Warn("입력된 닉네임이 없습니다!");
+                server_nickname.Focus();
+                return;
+            }
+            string changeNicknameMessage = "[-- Server '" + serverName + "(" + ip_server_info.Text + ")" + "'님이 '" + nickname + "'(으)로 이름을 변경하셨습니다--]";
+
+            // 서버가 대기중인지 확인한다.
+            if (!mainSock.IsBound)
+            {
+                MsgBoxHelper.Warn("서버가 실행되고 있지 않습니다!");
+                return;
+            }
+
+            // 문자열을 utf8 형식의 바이트로 변환한다.
+            byte[] bDts = Encoding.UTF8.GetBytes(changeNicknameMessage);
+
+            // 연결된 모든 클라이언트에게 전송한다.
+            for (int i = connectedClients.Count - 1; i >= 0; i--)
+            {
+                Socket socket = connectedClients[i];
+                try { socket.Send(bDts); }
+                catch
+                {
+                    // 오류 발생하면 전송 취소하고 리스트에서 삭제한다.
+                    try { socket.Dispose(); } catch { }
+                    connectedClients.RemoveAt(i);
+                }
+            }
+
+
+            AppendText(string.Format(changeNicknameMessage));
+            serverName = server_nickname.Text.Trim();
         }
 
         private void Btn_message_Click(object sender, EventArgs e)
