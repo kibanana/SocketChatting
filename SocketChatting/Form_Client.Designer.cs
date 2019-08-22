@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.client_chatinfo_group = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.port_client_info = new System.Windows.Forms.TextBox();
+            this.ip_client_info = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_client_open = new System.Windows.Forms.Button();
@@ -38,7 +38,7 @@
             this.client_info_group = new System.Windows.Forms.GroupBox();
             this.btn_client_nickname = new System.Windows.Forms.Button();
             this.client_nickname = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ip_client_specific_info = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Client_Textarea = new System.Windows.Forms.RichTextBox();
@@ -51,8 +51,8 @@
             // client_chatinfo_group
             // 
             this.client_chatinfo_group.BackColor = System.Drawing.SystemColors.Control;
-            this.client_chatinfo_group.Controls.Add(this.textBox2);
-            this.client_chatinfo_group.Controls.Add(this.textBox1);
+            this.client_chatinfo_group.Controls.Add(this.port_client_info);
+            this.client_chatinfo_group.Controls.Add(this.ip_client_info);
             this.client_chatinfo_group.Controls.Add(this.label2);
             this.client_chatinfo_group.Controls.Add(this.label1);
             this.client_chatinfo_group.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -64,24 +64,25 @@
             this.client_chatinfo_group.TabStop = false;
             this.client_chatinfo_group.Text = "접속할 채팅방 정보";
             // 
-            // textBox2
+            // port_client_info
             // 
-            this.textBox2.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox2.Location = new System.Drawing.Point(99, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 25);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "5000";
+            this.port_client_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.port_client_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.port_client_info.Location = new System.Drawing.Point(99, 77);
+            this.port_client_info.Name = "port_client_info";
+            this.port_client_info.Size = new System.Drawing.Size(208, 25);
+            this.port_client_info.TabIndex = 3;
+            this.port_client_info.Text = "5000";
             // 
-            // textBox1
+            // ip_client_info
             // 
-            this.textBox1.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(99, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 25);
-            this.textBox1.TabIndex = 2;
+            this.ip_client_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ip_client_info.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.ip_client_info.Location = new System.Drawing.Point(99, 35);
+            this.ip_client_info.Name = "ip_client_info";
+            this.ip_client_info.Size = new System.Drawing.Size(208, 25);
+            this.ip_client_info.TabIndex = 2;
+            this.ip_client_info.TextChanged += new System.EventHandler(this.Ip_server_info_TextChanged);
             // 
             // label2
             // 
@@ -131,7 +132,7 @@
             // 
             this.client_info_group.Controls.Add(this.btn_client_nickname);
             this.client_info_group.Controls.Add(this.client_nickname);
-            this.client_info_group.Controls.Add(this.textBox3);
+            this.client_info_group.Controls.Add(this.ip_client_specific_info);
             this.client_info_group.Controls.Add(this.label4);
             this.client_info_group.Controls.Add(this.label3);
             this.client_info_group.Font = new System.Drawing.Font("나눔바른고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -165,15 +166,15 @@
             this.client_nickname.Text = "Client";
             this.client_nickname.TextChanged += new System.EventHandler(this.Client_nickname_TextChanged);
             // 
-            // textBox3
+            // ip_client_specific_info
             // 
-            this.textBox3.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox3.Location = new System.Drawing.Point(157, 32);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(328, 25);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "10.96.124.130:51652";
+            this.ip_client_specific_info.Font = new System.Drawing.Font("나눔바른고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ip_client_specific_info.Location = new System.Drawing.Point(157, 32);
+            this.ip_client_specific_info.Name = "ip_client_specific_info";
+            this.ip_client_specific_info.ReadOnly = true;
+            this.ip_client_specific_info.Size = new System.Drawing.Size(328, 25);
+            this.ip_client_specific_info.TabIndex = 2;
+            this.ip_client_specific_info.Text = "10.96.124.130:51652";
             // 
             // label4
             // 
@@ -259,14 +260,14 @@
         private System.Windows.Forms.Button btn_client_open;
         private System.Windows.Forms.Button btn_client_exit;
         private System.Windows.Forms.GroupBox client_info_group;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox port_client_info;
+        private System.Windows.Forms.TextBox ip_client_info;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox client_nickname;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ip_client_specific_info;
         private System.Windows.Forms.RichTextBox Client_Textarea;
         private System.Windows.Forms.Button btn_message;
         private System.Windows.Forms.TextBox message;

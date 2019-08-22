@@ -49,6 +49,12 @@ namespace SocketChatting
 
             ip_server_info.Text = thisAddress.ToString();
 
+            if (mainSock.Connected)
+            {
+                MsgBoxHelper.Error("이미 연결되어 있습니다!");
+                return;
+            }
+
             int port;
             if (!int.TryParse(port_server_info.Text, out port))
             {
@@ -174,7 +180,6 @@ namespace SocketChatting
             }
             catch
             {
-               
 
             }
             ip_server_info.ReadOnly = false;
