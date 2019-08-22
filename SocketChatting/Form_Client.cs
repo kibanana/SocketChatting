@@ -161,7 +161,7 @@ namespace SocketChatting
             // 텍스트박스에 추가해준다.
             // 비동기식으로 작업하기 때문에 폼의 UI 스레드에서 작업을 해줘야 한다.
             // 따라서 대리자를 통해 처리한다.
-            AppendText(string.Format("[받음]{0}", text));
+            AppendText(string.Format(Environment.NewLine + "[받음] {0}", text));
 
             // 클라이언트에선 데이터를 전달해줄 필요가 없으므로 바로 수신 대기한다.
             // 데이터를 받은 후엔 다시 버퍼를 비워주고 같은 방법으로 수신을 대기한다.
@@ -189,18 +189,18 @@ namespace SocketChatting
                 return;
             }
 
-            // 서버 ip 주소와 메세지를 담도록 만든다.
-            IPEndPoint ip = (IPEndPoint)mainSock.LocalEndPoint;
-            string addr = ip.Address.ToString();
+            m = clientName + " : " + m;
 
             // 문자열을 utf8 형식의 바이트로 변환한다.
-            byte[] bDts = Encoding.UTF8.GetBytes(clientName+"("+ip_client_info.Text+")"+ '\x01' + m);
+            byte[] bDts = Encoding.UTF8.GetBytes(m);
 
             // 서버에 전송한다.
             mainSock.Send(bDts);
 
+            string[] mArr = m.Split(':');
+
             // 전송 완료 후 텍스트박스에 추가하고, 원래의 내용은 지운다.
-            AppendText(string.Format("[보냄]"+clientName + "(" + ip_client_info.Text + ")" + '\x01' + m));
+            AppendText(string.Format(Environment.NewLine + "[보냄] " + mArr[1]));
             message.Clear();
         }
 

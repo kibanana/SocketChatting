@@ -134,7 +134,7 @@ namespace SocketChatting
             // 텍스트박스에 추가해준다.
             // 비동기식으로 작업하기 때문에 폼의 UI 스레드에서 작업을 해줘야 한다.
             // 따라서 대리자를 통해 처리한다.
-            AppendText(string.Format("{0}", text));
+            AppendText(string.Format(Environment.NewLine + "[받음] {0}", text));
 
             // for을 통해 "역순"으로 클라이언트에게 데이터를 보낸다.
             for (int i = connectedClients.Count - 1; i >= 0; i--)
@@ -236,8 +236,10 @@ namespace SocketChatting
                 return;
             }
 
+            m = serverName + "(Server) : " + m;
+
             // 문자열을 utf8 형식의 바이트로 변환한다.
-            byte[] bDts = Encoding.UTF8.GetBytes(thisAddress.ToString() + '\x01' + m);
+            byte[] bDts = Encoding.UTF8.GetBytes(m);
 
             // 연결된 모든 클라이언트에게 전송한다.
             for (int i = connectedClients.Count - 1; i >= 0; i--)
@@ -252,8 +254,10 @@ namespace SocketChatting
                 }
             }
 
+            string[] mArr = m.Split(':');
+
             // 전송 완료 후 텍스트박스에 추가하고, 원래의 내용은 지운다.
-            AppendText(string.Format("Server {0}: {1}", serverName+"("+thisAddress.ToString()+")", m));
+            AppendText(string.Format(Environment.NewLine + "[보냄]" + mArr[1]));
             message.Text = "";
         }
         private void Form_Server_Load(object sender, EventArgs e)
