@@ -89,6 +89,7 @@ namespace SocketChatting
             }
             else
                 Server_Textarea.AppendText(s + Environment.NewLine);
+            Server_Textarea.ScrollToCaret();
         }
 
         List<Socket> connectedClients = new List<Socket>();
@@ -188,7 +189,7 @@ namespace SocketChatting
                 server_nickname.Focus();
                 return;
             }
-            string changeNicknameMessage = "[-- Server '" + serverName + "(" + ip_server_info.Text + ")" + "'님이 '" + nickname + "'(으)로 이름을 변경하셨습니다--]";
+            string changeNicknameMessage = Environment.NewLine + "[-- Server '" + serverName + "(" + ip_server_info.Text + ")" + "'님이 '" + nickname + "'(으)로 이름을 변경하셨습니다--]";
 
             // 서버가 대기중인지 확인한다.
             if (!mainSock.IsBound)

@@ -40,6 +40,7 @@ namespace SocketChatting
             }
             else
                 Client_Textarea.AppendText(s + Environment.NewLine);
+            Client_Textarea.ScrollToCaret();
         }
 
         private void Btn_client_open_Click(object sender, EventArgs e)
@@ -114,7 +115,7 @@ namespace SocketChatting
 
         private void Btn_client_nickname_Click(object sender, EventArgs e)
         {
-            string changeNicknameMessage = "[--'" + clientName +"("+ip_client_info.Text+")"+ "'님이 '" + client_nickname.Text.Trim() + "'(으)로 이름을 변경하셨습니다--]";
+            string changeNicknameMessage = Environment.NewLine + "[--'" + clientName +"("+ip_client_info.Text+")"+ "'님이 '" + client_nickname.Text.Trim() + "'(으)로 이름을 변경하셨습니다--]";
 
             if (string.IsNullOrEmpty(client_nickname.Text.Trim()))
             {
